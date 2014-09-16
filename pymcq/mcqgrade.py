@@ -1,10 +1,9 @@
 import sys
 import json
 import csv
-from itertools import chain, izip, count
-from operator import itemgetter
+from itertools import izip, imap
 
-from mcqtypes import read_question
+from pymcq.mcqtypes import read_question
 
 
 def grade_question(marked_idxs, correct_idx, points):
@@ -31,7 +30,7 @@ def main():
         csv_reader = csv.reader(csv_file)
 
 # ORDER MATTERS !!!!!!!!!!!!
-        for broj, row, student in izip(count(), csv_reader, studenti):
+        for row, student in izip(csv_reader, studenti):
             marked = map(int, row[4:])
 
 # group by 5 questions
@@ -47,10 +46,11 @@ def main():
 
             maximum = sum(points)
 
-            total = sum(map(grade, zip(marked_idxs, correct_idxs, points))
+            total = sum(imap(grade_question,
+                             izip(marked_idxs, correct_idxs, points)))
 
-            print "%s, %s / %s" % (student['surname'], total, moguce)
+            print "%s, %s / %s" % (student['surname'], total, maximum)
+
 
 if __name__ == '__main__':
     main()
-

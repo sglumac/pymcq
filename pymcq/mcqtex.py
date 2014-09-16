@@ -1,42 +1,4 @@
-from mcqtypes import read_question, TestInfo
-from utility import latex_format
-
-import json
-import csv
-import functools as fcn
-
-
-def generate_student_questions(question_generators, student_data, test_id):
-
-    name, surname, student_id = student_data
-
-    student = {'name': name, 'surname': surname,
-               'student_id': student_id, 'test_id': test_id}
-
-    student['questions'] = [generate_question()
-                            for generate_question in question_generators]
-
-    return student
-
-
-def create_json_exam(student_list, test_path, testinfo, question_generators):
-
-    test = dict()
-
-    with open(student_list, 'rb') as csvf:
-
-        reader = csv.reader(csvf)
-
-        test['info'] = testinfo
-
-        generate_questions = fcn.partial(generate_student_questions,
-                                         question_generators)
-
-        test['students'] = [generate_questions(student_data, test_id)
-                            for test_id, student_data in enumerate(reader)]
-
-    with open(test_path, 'wb') as testf:
-        testf.write(json.dumps(test))
+from pymcq.mcqtypes import read_question, TestInfo
 
 
 def create_title(test, student):
@@ -171,3 +133,23 @@ def create_answers(test_json, tex_path):
 
 def create_matrix(test_json, tex_path):
     create_tex(test_json, tex_path, write_matrix_choices)
+
+
+def latex_format(x, max_exponent=2, decimal_places=2, sign=False):
+
+    scientific_string = "{0:e}".format(x).split('e')
+
+    mantissa = float(scientific_string[0])
+    exponent = int(scientific_string[1])
+
+    if abs(exponent) > max_exponent:
+        mantissa = round(mantissa, decimal_places)
+        strx = r"%s \times 10^{%s}" % (mantissa, exponent)
+    else:
+        number = mantissa * 10 ** exponent
+
+        strx = '%s' % round(number, decimal_places - exponent)
+
+    return '+' + strx  if x >= 0 and sign else strx
+
+
