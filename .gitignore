@@ -41,3 +41,8 @@ output/*/index.html
 
 # Sphinx
 docs/_build
+
+*.csv
+*.json
+*test.tex
+*matrix.tex

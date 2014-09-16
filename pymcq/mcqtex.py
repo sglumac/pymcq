@@ -1,5 +1,7 @@
 from pymcq.mcqtypes import read_question, TestInfo
 
+import json
+
 
 def create_title(test, student):
     '''
@@ -15,7 +17,7 @@ def create_title(test, student):
     name = student['name']
     surname = student['surname']
     student_id = student['student_id']
-    
+
     exam_title = r'''
     \begin{tabular}{l c}
         \begin{minipage}{0.1\textwidth}
@@ -64,8 +66,8 @@ def write_test_questions(writeline, questions):
 
             writeline(r"\begin{oneparchoices}")
             for idx, choice in enumerate(part.choices):
-                writeline(r"\CorrectChoice " \
-                          if idx == part.correct_idx else r"\choice")
+                writeline(r"\CorrectChoice " if idx == part.correct_idx
+                          else r"\choice")
                 writeline("$" + latex_format(choice) + "$")
             writeline(r"\end{oneparchoices}")
 
@@ -84,11 +86,11 @@ def write_matrix_choices(writeline, questions):
 
         writeline(r"\question")
         writeline(r"\begin{parts}")
-        for part in question.parts:
+        for _ in question.parts:
             writeline(r"\part")
             writeline(r"$\phantom{x}\bigcirc\phantom{x}\bigcirc\phantom{x}\bigcirc\phantom{x}\bigcirc\phantom{x}\bigcirc$")
         writeline(r"\end{parts}")
-    
+
     writeline(r"\end{questions}")
     writeline(r"\singlespacing")
 
@@ -116,7 +118,7 @@ def create_tex(test_json, tex_path, write_questions, answers=False):
             writeline(create_title(test, student))
 
             questions = map(read_question, student['questions'])
-            write_questions(writeline, questions) 
+            write_questions(writeline, questions)
 
             writeline(r"\clearpage")
 
@@ -150,6 +152,4 @@ def latex_format(x, max_exponent=2, decimal_places=2, sign=False):
 
         strx = '%s' % round(number, decimal_places - exponent)
 
-    return '+' + strx  if x >= 0 and sign else strx
-
-
+    return '+' + strx if (x >= 0 and sign) else strx

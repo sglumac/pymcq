@@ -7,3 +7,5 @@ import pymcq.mcqtypes
 import pymcq.mcqjson
 import pymcq.mcqtex
 import pymcq.mcqgrade
+
+import pymcq.examples

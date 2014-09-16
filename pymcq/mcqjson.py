@@ -16,7 +16,7 @@ def generate_student_questions(question_generators, student_data, test_id):
     return student
 
 
-def create_json_exam(student_list, test_path, testinfo, question_generators):
+def create_exam(student_list, test_path, testinfo, question_generators):
 
     test = dict()
 
