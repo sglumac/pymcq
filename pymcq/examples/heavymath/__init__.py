@@ -1,2 +1,2 @@
-import pymcq.examples.heavymath.question1
-import pymcq.examples.heavymath.question2
+import pymcq.examples.heavymath.test
+import pymcq.examples.heavymath.testsuite1

@@ -2,8 +2,7 @@ from pymcq import mcqjson
 from pymcq import mcqtex
 from pymcq.mcqtypes import TestInfo
 
-from pymcq.examples.heavymath import question1
-from pymcq.examples.heavymath import question2
+from pymcq.examples.heavymath.testsuite1 import question1, question2
 
 QUESTIONS = question1, question2
 
@@ -28,4 +27,5 @@ if __name__ == '__main__':
     mcqjson.create_exam('student_list.csv', 'test.json',
                         testinfo, question_generators)
     mcqtex.create_test('header.tex', 'test.json', 'test.tex')
+    mcqtex.create_answers('header.tex', 'test.json', 'answers.tex')
     mcqtex.create_matrix('header.tex', 'test.json', 'matrix.tex')

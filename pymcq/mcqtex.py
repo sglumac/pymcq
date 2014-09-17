@@ -20,7 +20,7 @@ def create_title(test, student):
 
     exam_title = r'''
     \begin{tabular}{l c}
-        \begin{minipage}{0.1\textwidth}
+        \begin{minipage}{0.09\textwidth}
             \begin{center}
             \includegraphics[width=\textwidth]{%s}
         \end{center}
@@ -108,6 +108,21 @@ def create_tex(header_path, test_json, tex_path, write_questions, answers=False)
                   r"\documentclass{exam}")
 
         writeline(r'''
+        \usepackage[margin=1in]{geometry}
+
+        \usepackage{graphicx}
+
+        \usepackage{amssymb}
+        \usepackage{amsmath}
+        \usepackage{multirow}
+
+        \usepackage{tabularx}
+
+        \usepackage{setspace}
+
+        \footer{}{}{}
+        \parindent0pt
+
         \input{%s}
 
         \begin{document}

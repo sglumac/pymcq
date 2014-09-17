@@ -44,6 +44,11 @@ docs/_build
 
 *.csv
 *.json
-*.tex
 *.pdf
-*.jpg
+*.aux
+*.fls
+*.log
+*.fdb_latexmk
+*answers.tex
+*test.tex
+*matrix.tex
