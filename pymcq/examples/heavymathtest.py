@@ -7,6 +7,9 @@ from pymcq.examples.heavymath import question2
 
 QUESTIONS = question1, question2
 
+LOGO = 'logo.jpg'
+INSTITUTION = 'Visoka tehnicka skola u Bjelovaru'
+DEPARTMENT = 'Studij mehatronike'
 COURSE = 'Teska matematika'
 EXAM = 'Ispitni rok'
 DATE = '11.09.2014.'
@@ -18,7 +21,7 @@ dva odgovora, zadatak se smatra nerijesenim i nosi 0 bodova.
 
 if __name__ == '__main__':
 
-    testinfo = TestInfo(COURSE, EXAM, DATE, NOTE)
+    testinfo = TestInfo(LOGO, INSTITUTION, DEPARTMENT, COURSE, EXAM, DATE, NOTE)
     question_generators = [question.generate_question
                            for question in QUESTIONS]
 

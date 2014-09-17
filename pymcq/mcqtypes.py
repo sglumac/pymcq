@@ -3,7 +3,7 @@ from random import randrange
 
 
 TestInfo = namedtuple('TestInfo',
-                      ('course', 'exam', 'date', 'note'))
+                      ('logo', 'institution', 'department', 'course', 'exam', 'date', 'note'))
 
 Question = namedtuple('Question',
                       ('title', 'parameters', 'main_text', 'parts'))
