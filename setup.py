@@ -20,14 +20,14 @@ test_requirements = [
 
 setup(
     name='pymcq',
-    version='0.1.0',
+    version='0.1.2',
     description='This is a project that integrates latex exam into pyhon for easier creating of mcq tests.',
     long_description=readme + '\n\n' + history,
     author='Slaven Glumac',
     author_email='slaven.glumac@gmail.com',
     url='https://github.com/sglumac/pymcq',
     packages=[
-        'pymcq',
+        'pymcq', 'pymcq/examples', 'pymcq/examples/heavymath'
     ],
     package_dir={'pymcq': 'pymcq'},
     include_package_data=True,

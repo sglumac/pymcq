@@ -44,6 +44,6 @@ docs/_build
 
 *.csv
 *.json
-*test.tex
-*matrix.tex
+*.tex
 *.pdf
+*.jpg
