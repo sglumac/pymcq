@@ -27,5 +27,5 @@ if __name__ == '__main__':
 
     mcqjson.create_exam('student_list.csv', 'test.json',
                         testinfo, question_generators)
-    mcqtex.create_test('test.json', 'test.tex')
-    mcqtex.create_matrix('test.json', 'matrix.tex')
+    mcqtex.create_test('header.tex', 'test.json', 'test.tex')
+    mcqtex.create_matrix('header.tex', 'test.json', 'matrix.tex')

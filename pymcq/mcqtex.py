@@ -3,7 +3,7 @@ from pymcq.mcqtypes import read_question, TestInfo
 import json
 
 
-def create_title(logo_path, test, student):
+def create_title(test, student):
     '''
     test - json dictionary
     student - json dictionary
@@ -22,7 +22,7 @@ def create_title(logo_path, test, student):
     \begin{tabular}{l c}
         \begin{minipage}{0.1\textwidth}
             \begin{center}
-            \includegraphics[width=\textwidth]{img/logo.jpg}
+            \includegraphics[width=\textwidth]{%s}
         \end{center}
         \end{minipage}
         &
@@ -95,7 +95,7 @@ def write_matrix_choices(writeline, questions):
     writeline(r"\singlespacing")
 
 
-def create_tex(logo_path, header_path, test_json, tex_path, write_questions, answers=False):
+def create_tex(header_path, test_json, tex_path, write_questions, answers=False):
 
     with open(test_json, 'rb') as jsonf, open(tex_path, 'wb') as testf:
 
@@ -115,7 +115,7 @@ def create_tex(logo_path, header_path, test_json, tex_path, write_questions, ans
 
         for student in test['students']:
 
-            writeline(create_title(logo_path, test, student))
+            writeline(create_title(test, student))
 
             questions = map(read_question, student['questions'])
             write_questions(writeline, questions)
@@ -125,15 +125,15 @@ def create_tex(logo_path, header_path, test_json, tex_path, write_questions, ans
         writeline(r"\end{document}")
 
 
-def create_test(logo_path, header_path, test_json, tex_path):
-    create_tex(logo_path, header_path, test_json, tex_path, write_test_questions)
+def create_test(header_path, test_json, tex_path):
+    create_tex(header_path, test_json, tex_path, write_test_questions)
 
 
-def create_answers(logo_path, header_path, test_json, tex_path):
-    create_tex(logo_path, header_path, test_json, tex_path, write_test_questions, answers=True)
+def create_answers(header_path, test_json, tex_path):
+    create_tex(header_path, test_json, tex_path, write_test_questions, answers=True)
 
 
-def create_matrix(logo_path, header_path, test_json, tex_path):
+def create_matrix(header_path, test_json, tex_path):
     create_tex(header_path, test_json, tex_path, write_matrix_choices)
 
 
