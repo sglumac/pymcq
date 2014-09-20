@@ -20,7 +20,7 @@ test_requirements = [
 
 setup(
     name='pymcq',
-    version='0.1.4',
+    version='0.1.5',
     description='This is a project that integrates latex exam into pyhon for easier creating of mcq tests.',
     long_description=readme + '\n\n' + history,
     author='Slaven Glumac',
