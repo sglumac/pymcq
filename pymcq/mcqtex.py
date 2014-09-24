@@ -46,7 +46,11 @@ def create_title(test, student):
     %s
     \vspace{0.5cm}
 
-    ''' % (logo, institution, department, course, exam, date, test_id, name, surname, student_id, note)
+    \footer{}{}{Test %s, %s %s, %s}
+
+    ''' % (logo, institution, department, course, exam, date,
+           test_id, name, surname, student_id, note,
+           test_id, name, surname, student_id)
 
     return exam_title
 
@@ -120,7 +124,6 @@ def create_tex(header_path, test_json, tex_path, write_questions, answers=False)
 
         \usepackage{setspace}
 
-        \footer{}{}{}
         \parindent0pt
 
         \input{%s}
