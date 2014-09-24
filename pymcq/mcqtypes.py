@@ -14,6 +14,9 @@ Part = namedtuple('Part',
 
 def create_usual_part(text, answer, points):
 
+    if answer < 1e-14:
+        raise ValueError("Answer should not be equal zero, 10% out of 0 = 0")
+
     correct_idx = randrange(5)
 
     mid = answer / (0.8 + correct_idx * 0.1)
@@ -43,7 +46,7 @@ def read_question(question_list):
 
     parts = tuple(Part(*part_list) for part_list in tmp_question.parts)
 
-    question  = Question(tmp_question.title, tmp_question.parameters,
-                         tmp_question.main_text, parts)
+    question = Question(tmp_question.title, tmp_question.parameters,
+                        tmp_question.main_text, parts)
 
     return question
