@@ -14,7 +14,7 @@ Part = namedtuple('Part',
 
 def create_usual_part(text, answer, points):
 
-    if answer < 1e-14:
+    if abs(answer) < 1e-14:
         raise ValueError("Answer should not be equal zero, 10% out of 0 = 0")
 
     correct_idx = randrange(5)
